@@ -12,7 +12,7 @@ import '../pages/account_details_page.dart';
     AutoRoute(page: BooksPage, path: '/books'),
     AutoRoute(page: BookDetailsPage, path: '/books/:bookId'),
     AutoRoute(page: AccountPage, path: '/account'),
-    AutoRoute(page: AccountDetailsPage, path: '/account-details'),
+    AutoRoute<int>(page: AccountDetailsPage, path: '/account-details'),
     RedirectRoute(path: '*', redirectTo: '/'),
   ],
 )

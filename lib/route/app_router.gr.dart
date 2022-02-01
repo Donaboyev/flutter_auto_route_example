@@ -34,20 +34,18 @@ class AppRouter extends _i6.RootStackRouter {
           routeData: routeData, child: const _i2.BooksPage());
     },
     BookDetailsRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<BookDetailsRouteArgs>(
-          orElse: () =>
-              BookDetailsRouteArgs(bookId: pathParams.getInt('bookId')));
+      final args = routeData.argsAs<BookDetailsRouteArgs>();
       return _i6.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i3.BookDetailsPage(key: args.key, bookId: args.bookId));
+          child: _i3.BookDetailsPage(
+              key: args.key, bookId: args.bookId, onRateBook: args.onRateBook));
     },
     AccountRoute.name: (routeData) {
       return _i6.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i4.AccountPage());
     },
     AccountDetailsRoute.name: (routeData) {
-      return _i6.MaterialPageX<dynamic>(
+      return _i6.MaterialPageX<int>(
           routeData: routeData, child: const _i5.AccountDetailsPage());
     }
   };
@@ -85,25 +83,32 @@ class BooksRoute extends _i6.PageRouteInfo<void> {
 /// generated route for
 /// [_i3.BookDetailsPage]
 class BookDetailsRoute extends _i6.PageRouteInfo<BookDetailsRouteArgs> {
-  BookDetailsRoute({_i7.Key? key, required int bookId})
+  BookDetailsRoute(
+      {_i7.Key? key,
+      required int bookId,
+      required void Function(int) onRateBook})
       : super(BookDetailsRoute.name,
             path: '/books/:bookId',
-            args: BookDetailsRouteArgs(key: key, bookId: bookId),
+            args: BookDetailsRouteArgs(
+                key: key, bookId: bookId, onRateBook: onRateBook),
             rawPathParams: {'bookId': bookId});
 
   static const String name = 'BookDetailsRoute';
 }
 
 class BookDetailsRouteArgs {
-  const BookDetailsRouteArgs({this.key, required this.bookId});
+  const BookDetailsRouteArgs(
+      {this.key, required this.bookId, required this.onRateBook});
 
   final _i7.Key? key;
 
   final int bookId;
 
+  final void Function(int) onRateBook;
+
   @override
   String toString() {
-    return 'BookDetailsRouteArgs{key: $key, bookId: $bookId}';
+    return 'BookDetailsRouteArgs{key: $key, bookId: $bookId, onRateBook: $onRateBook}';
   }
 }
 
