@@ -16,8 +16,8 @@ class AccountPage extends StatelessWidget {
             const SizedBox(height: 120),
             ElevatedButton(
               onPressed: () async {
-                final int age =
-                    await context.pushRoute(const AccountDetailsRoute()) as int;
+                final int? age = await context
+                    .pushRoute(const AccountDetailsRoute()) as int?;
                 debugPrint('========> account page age: $age');
               },
               child: const Text('Go to account details page'),

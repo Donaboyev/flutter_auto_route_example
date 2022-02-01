@@ -4,12 +4,12 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class BookDetailsPage extends StatelessWidget {
   final int bookId;
-  final void Function(int) onRateBook;
+  final void Function(int)? onRateBook;
 
   const BookDetailsPage({
     Key? key,
     @PathParam('bookId') required this.bookId,
-    required this.onRateBook,
+     this.onRateBook,
   }) : super(key: key);
 
   @override
@@ -33,7 +33,7 @@ class BookDetailsPage extends StatelessWidget {
                 color: Colors.amber,
               ),
               onRatingUpdate: (rating) {
-                onRateBook.call(rating.toInt());
+                onRateBook?.call(rating.toInt());
               },
             )
           ],

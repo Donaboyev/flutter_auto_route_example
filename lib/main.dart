@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auto_route_example/route/app_router.gr.dart';
+
+import 'route/app_router.gr.dart';
 
 void main() => runApp(MyApp());
 

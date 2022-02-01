@@ -16,14 +16,14 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 120),
             ElevatedButton(
               onPressed: () {
-                context.pushRoute(const BooksRoute());
+                context.pushRoute(const BooksRouter());
               },
               child: const Text('Go to books page'),
             ),
             const SizedBox(height: 120),
             ElevatedButton(
               onPressed: () {
-                context.pushRoute(const AccountRoute());
+                context.pushRoute(const AccountRouter());
               },
               child: const Text('Go to account page'),
             ),

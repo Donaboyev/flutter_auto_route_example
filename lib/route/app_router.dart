@@ -1,18 +1,53 @@
-import 'package:auto_route/annotations.dart';
-import '../pages/book_details_page.dart';
-import '../pages/books_page.dart';
-import '../pages/home_page.dart';
-import '../pages/account_page.dart';
-import '../pages/account_details_page.dart';
+import 'package:auto_route/auto_route.dart';
+import '../pages/pages.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: HomePage, initial: true, path: '/home'),
-    AutoRoute(page: BooksPage, path: '/books'),
-    AutoRoute(page: BookDetailsPage, path: '/books/:bookId'),
-    AutoRoute(page: AccountPage, path: '/account'),
-    AutoRoute<int>(page: AccountDetailsPage, path: '/account-details'),
+    CustomRoute(
+      page: HomePage,
+      initial: true,
+      path: '/',
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+    ),
+    CustomRoute(
+      page: EmptyRouterPage,
+      name: 'BooksRouter',
+      path: '/books',
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      children: [
+        CustomRoute(
+          path: '',
+          page: BooksPage,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          path: ':bookId',
+          page: BookDetailsPage,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        RedirectRoute(path: '*', redirectTo: ''),
+      ],
+    ),
+    CustomRoute(
+      page: EmptyRouterPage,
+      path: '/account',
+      name: 'AccountRouter',
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      children: [
+        CustomRoute(
+          page: AccountPage,
+          path: '',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute<int>(
+          page: AccountDetailsPage,
+          path: 'details',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        RedirectRoute(path: '*', redirectTo: ''),
+      ],
+    ),
     RedirectRoute(path: '*', redirectTo: '/'),
   ],
 )
