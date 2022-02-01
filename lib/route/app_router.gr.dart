@@ -32,7 +32,7 @@ class AppRouter extends _i2.RootStackRouter {
     BooksRouter.name: (routeData) {
       return _i2.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i2.EmptyRouterPage(),
+          child: const _i1.BooksWrapperPage(),
           transitionsBuilder: _i2.TransitionsBuilders.slideLeftWithFade,
           opaque: true,
           barrierDismissible: false);
@@ -122,7 +122,7 @@ class HomeRoute extends _i2.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
+/// [_i1.BooksWrapperPage]
 class BooksRouter extends _i2.PageRouteInfo<void> {
   const BooksRouter({List<_i2.PageRouteInfo>? children})
       : super(BooksRouter.name, path: '/books', initialChildren: children);

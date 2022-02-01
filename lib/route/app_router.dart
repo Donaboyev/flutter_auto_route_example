@@ -11,7 +11,7 @@ import '../pages/pages.dart';
       transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
     ),
     CustomRoute(
-      page: EmptyRouterPage,
+      page: BooksWrapperPage,
       name: 'BooksRouter',
       path: '/books',
       transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
