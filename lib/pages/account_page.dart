@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import '../route/app_router.gr.dart';
 
-class BooksPage extends StatelessWidget {
-  const BooksPage({Key? key}) : super(key: key);
+class AccountPage extends StatelessWidget {
+  const AccountPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,13 +12,13 @@ class BooksPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Books page'),
+            const Text('Account page'),
             const SizedBox(height: 120),
             ElevatedButton(
               onPressed: () {
-                context.pushRoute(const BookDetailsRoute());
+                context.pushRoute(const AccountDetailsRoute());
               },
-              child: const Text('Go to book details page'),
+              child: const Text('Go to account details page'),
             ),
           ],
         ),
