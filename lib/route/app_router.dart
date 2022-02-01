@@ -8,11 +8,12 @@ import '../pages/account_details_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: HomePage, initial: true),
-    AutoRoute(page: BooksPage),
-    AutoRoute(page: BookDetailsPage),
-    AutoRoute(page: AccountPage),
-    AutoRoute(page: AccountDetailsPage),
+    AutoRoute(page: HomePage, initial: true, path: '/home'),
+    AutoRoute(page: BooksPage, path: '/books'),
+    AutoRoute(page: BookDetailsPage, path: '/books/:bookId'),
+    AutoRoute(page: AccountPage, path: '/account'),
+    AutoRoute(page: AccountDetailsPage, path: '/account-details'),
+    RedirectRoute(path: '*', redirectTo: '/'),
   ],
 )
 class $AppRouter {}

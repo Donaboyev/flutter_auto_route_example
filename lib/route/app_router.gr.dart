@@ -34,8 +34,13 @@ class AppRouter extends _i6.RootStackRouter {
           routeData: routeData, child: const _i2.BooksPage());
     },
     BookDetailsRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<BookDetailsRouteArgs>(
+          orElse: () =>
+              BookDetailsRouteArgs(bookId: pathParams.getInt('bookId')));
       return _i6.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i3.BookDetailsPage());
+          routeData: routeData,
+          child: _i3.BookDetailsPage(key: args.key, bookId: args.bookId));
     },
     AccountRoute.name: (routeData) {
       return _i6.MaterialPageX<dynamic>(
@@ -49,18 +54,22 @@ class AppRouter extends _i6.RootStackRouter {
 
   @override
   List<_i6.RouteConfig> get routes => [
-        _i6.RouteConfig(HomeRoute.name, path: '/'),
-        _i6.RouteConfig(BooksRoute.name, path: '/books-page'),
-        _i6.RouteConfig(BookDetailsRoute.name, path: '/book-details-page'),
-        _i6.RouteConfig(AccountRoute.name, path: '/account-page'),
-        _i6.RouteConfig(AccountDetailsRoute.name, path: '/account-details-page')
+        _i6.RouteConfig('/#redirect',
+            path: '/', redirectTo: '/home', fullMatch: true),
+        _i6.RouteConfig(HomeRoute.name, path: '/home'),
+        _i6.RouteConfig(BooksRoute.name, path: '/books'),
+        _i6.RouteConfig(BookDetailsRoute.name, path: '/books/:bookId'),
+        _i6.RouteConfig(AccountRoute.name, path: '/account'),
+        _i6.RouteConfig(AccountDetailsRoute.name, path: '/account-details'),
+        _i6.RouteConfig('*#redirect',
+            path: '*', redirectTo: '/', fullMatch: true)
       ];
 }
 
 /// generated route for
 /// [_i1.HomePage]
 class HomeRoute extends _i6.PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/');
+  const HomeRoute() : super(HomeRoute.name, path: '/home');
 
   static const String name = 'HomeRoute';
 }
@@ -68,24 +77,40 @@ class HomeRoute extends _i6.PageRouteInfo<void> {
 /// generated route for
 /// [_i2.BooksPage]
 class BooksRoute extends _i6.PageRouteInfo<void> {
-  const BooksRoute() : super(BooksRoute.name, path: '/books-page');
+  const BooksRoute() : super(BooksRoute.name, path: '/books');
 
   static const String name = 'BooksRoute';
 }
 
 /// generated route for
 /// [_i3.BookDetailsPage]
-class BookDetailsRoute extends _i6.PageRouteInfo<void> {
-  const BookDetailsRoute()
-      : super(BookDetailsRoute.name, path: '/book-details-page');
+class BookDetailsRoute extends _i6.PageRouteInfo<BookDetailsRouteArgs> {
+  BookDetailsRoute({_i7.Key? key, required int bookId})
+      : super(BookDetailsRoute.name,
+            path: '/books/:bookId',
+            args: BookDetailsRouteArgs(key: key, bookId: bookId),
+            rawPathParams: {'bookId': bookId});
 
   static const String name = 'BookDetailsRoute';
+}
+
+class BookDetailsRouteArgs {
+  const BookDetailsRouteArgs({this.key, required this.bookId});
+
+  final _i7.Key? key;
+
+  final int bookId;
+
+  @override
+  String toString() {
+    return 'BookDetailsRouteArgs{key: $key, bookId: $bookId}';
+  }
 }
 
 /// generated route for
 /// [_i4.AccountPage]
 class AccountRoute extends _i6.PageRouteInfo<void> {
-  const AccountRoute() : super(AccountRoute.name, path: '/account-page');
+  const AccountRoute() : super(AccountRoute.name, path: '/account');
 
   static const String name = 'AccountRoute';
 }
@@ -94,7 +119,7 @@ class AccountRoute extends _i6.PageRouteInfo<void> {
 /// [_i5.AccountDetailsPage]
 class AccountDetailsRoute extends _i6.PageRouteInfo<void> {
   const AccountDetailsRoute()
-      : super(AccountDetailsRoute.name, path: '/account-details-page');
+      : super(AccountDetailsRoute.name, path: '/account-details');
 
   static const String name = 'AccountDetailsRoute';
 }

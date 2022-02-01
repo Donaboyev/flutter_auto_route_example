@@ -16,7 +16,7 @@ class BooksPage extends StatelessWidget {
             const SizedBox(height: 120),
             ElevatedButton(
               onPressed: () {
-                context.pushRoute(const BookDetailsRoute());
+                context.pushRoute(BookDetailsRoute(bookId: 1));
               },
               child: const Text('Go to book details page'),
             ),
