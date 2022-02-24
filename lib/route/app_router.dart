@@ -5,6 +5,17 @@ import '../pages/pages.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     CustomRoute(
+      page: LoginWrapperPage,
+      path: '/login',
+      transitionsBuilder: TransitionsBuilders.slideLeft,
+      children: [
+        CustomRoute(
+          page: EmailPage,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+      ],
+    ),
+    CustomRoute(
       page: HomePage,
       initial: true,
       path: '/',
